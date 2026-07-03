@@ -48,12 +48,15 @@ document.querySelectorAll('.section, .paper, .proj, .edu-item, .bars li, .meta-s
   el.classList.add('reveal'); io.observe(el);
 });
 
-// Skill bars
-document.querySelectorAll('.bars li').forEach(li => {
-  li.style.setProperty('--lvl', li.dataset.level + '%');
-  const s = li.querySelector('span');
-  s.insertAdjacentHTML('beforeend', `<em style="font-style:normal;color:var(--muted)">${li.dataset.level}%</em>`);
-});
+// Skill bars — run only if present (guarded)
+const skillBars = document.querySelectorAll('.bars li');
+if (skillBars.length) {
+  skillBars.forEach(li => {
+    li.style.setProperty('--lvl', li.dataset.level + '%');
+    const s = li.querySelector('span');
+    if (s) s.insertAdjacentHTML('beforeend', `<em style="font-style:normal;color:var(--muted)">${li.dataset.level}%</em>`);
+  });
+}
 
 /* ============ Particle background ============ */
 const canvas = document.getElementById('bg-canvas');
